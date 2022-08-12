@@ -41,7 +41,7 @@ let rule = {
 
 export { rule };
 
-console.log(`howe插件${version}初始化~`);
+console.log(`参考面板插件${version}初始化~`);
 
 setTimeout(async function () {
   let msgStr = await redis.get("howe:restart-msg");
@@ -49,7 +49,7 @@ setTimeout(async function () {
     let msg = JSON.parse(msgStr);
     await common.relpyPrivate(msg.qq, msg.msg);
     await redis.del("howe:restart-msg");
-    let msgs = [`当前howe版本: ${version}`, `您可使用 #howe版本 命令查看更新信息`];
+    let msgs = [`当前参考面板插件版本: ${version}`, `您可使用 #参考面板版本 命令查看更新信息`];
     await common.relpyPrivate(msg.qq, msgs.join("\n"));
   }
 }, 1000);

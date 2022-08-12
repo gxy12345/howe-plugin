@@ -4,7 +4,7 @@ import { exec } from "child_process";
 export const rule = {
     updateMiaoPlugin: {
         hashMark: true,
-        reg: "^#howe(强制)?更新",
+        reg: "^#参考面板插件(强制)?更新",
         describe: "【#管理】howe更新",
       }
 }
@@ -31,17 +31,17 @@ export async function updateMiaoPlugin(e) {
     }
     exec(command, { cwd: `${_path}/plugins/howe-plugin/` }, function (error, stdout, stderr) {
       if (/Already up[ -]to[ -]date/.test(stdout)) {
-        e.reply("目前已经是最新版howe了~");
+        e.reply("目前已经是最新版参考面板插件了~");
         return true;
       }
       if (error) {
-        e.reply("howe更新失败！\nError code: " + error.code + "\n" + error.stack + "\n 请稍后重试。");
+        e.reply("参考面板插件更新失败！\nError code: " + error.code + "\n" + error.stack + "\n 请稍后重试。");
         return true;
       }
-      e.reply("howe更新成功，正在尝试重新启动Yunzai以应用更新...");
+      e.reply("参考面板插件更新成功，正在尝试重新启动Yunzai以应用更新...");
       timer && clearTimeout(timer);
       redis.set("howe:restart-msg", JSON.stringify({
-        msg: "重启成功，新版howe已经生效",
+        msg: "重启成功，新版参考面板插件已经生效",
         qq: e.user_id
       }), { EX: 30 });
       timer = setTimeout(function () {
@@ -51,7 +51,7 @@ export async function updateMiaoPlugin(e) {
         }
         exec(command, function (error, stdout, stderr) {
           if (error) {
-            e.reply("自动重启失败，请手动重启以应用新版howe。\nError code: " + error.code + "\n" + error.stack + "\n");
+            e.reply("自动重启失败，请手动重启以应用新版参考面板插件。\nError code: " + error.code + "\n" + error.stack + "\n");
             Bot.logger.error('重启失败\n${error.stack}');
             return true;
           } else if (stdout) {
