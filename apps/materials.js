@@ -21,10 +21,9 @@ export const rule = {
 export function material_chart (e) {
     let msg = e.msg.replace(/#|＃|素材|/g, "");
     console.log (msg);
-    let id = YunzaiApps.mysInfo.roleIdToName(msg);
     let name;
     name = msg
-    let path = `${_path}/plugins/howe-plugin/resources/refer_Artifacts/${name}素材.png`;
+    let path = `${_path}/plugins/howe-plugin/resources/materials/${name}素材.png`;
     console.log (path);
     if (fs.existsSync (path)) {
         //最后回复消息
