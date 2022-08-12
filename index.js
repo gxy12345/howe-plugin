@@ -1,6 +1,7 @@
 import { versionInfo ,refer_Artifacts_Desc} from "./apps/help.js";
 import { version } from "./components/Changelog.js";
 import { refer_Artifacts } from "./apps/refer_Artifacts.js";
+import { material_chart } from "./apps/materials.js";
 import common from "../../lib/common.js";
 import { updateMiaoPlugin  }from "./apps/admin.js";
 export {
@@ -8,6 +9,7 @@ export {
   versionInfo,
   updateMiaoPlugin,
   refer_Artifacts_Desc,
+  material_chart,
 };
 
 
@@ -16,20 +18,24 @@ let rule = {
     reg: "^#*[^-~]+参考面板+$",
     describe: "参考面板",
   },
+  material_chart: {
+    reg: "^#*(天赋|武器|周本)+素材+$",
+    describe: "素材表",
+  },
   versionInfo: {
-    reg: "^#?howe版本$",
+    reg: "^#?参考面板版本$",
     describe: "版本",
-},
-updateMiaoPlugin: {
-  hashMark: true,
-  reg: "^#howe(强制)?更新",
-  describe: "【#管理】howe更新",
-},
-refer_Artifacts_Desc:{
-  reg: "^#?参考面板说明$",
-  priority: 100,
-  describe: "参考面板说明",
-}
+  },
+  updateMiaoPlugin: {
+    hashMark: true,
+    reg: "^#参考面板(强制)?更新",
+    describe: "【#管理】参考面板更新",
+  },
+  refer_Artifacts_Desc:{
+    reg: "^#?参考面板说明$",
+    priority: 100,
+    describe: "参考面板说明",
+  }
 
 };
 
