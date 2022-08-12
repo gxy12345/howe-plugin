@@ -29,6 +29,7 @@ export function material_chart (e) {
         //最后回复消息
         let msg = [
             segment.image (path),
+            '[来源: 原神观测枢]',
         ];
         //发送消息
         e.reply (msg);
