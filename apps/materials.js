@@ -14,7 +14,7 @@ export const rule = {
         describe: "素材表" //【命令】功能说明
     },
     primogems_expect: {
-        reg: "^#原石(预估|预期）+$",  //匹配消息正则，命令正则
+        reg: "^#原石(预估|预期)+$",  //匹配消息正则，命令正则
         priority: 1, //优先级，越小优先度越高
         describe: "原石预估" //【命令】功能说明
     }
