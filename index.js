@@ -23,6 +23,10 @@ let rule = {
     reg: "^#*(天赋|武器|周本)+素材+$",
     describe: "素材表",
   },
+  primogems_expect: {
+      reg: "^#原石(预估|预期)+$",
+      describe: "原石预估"
+  },
   versionInfo: {
     reg: "^#?参考面板版本$",
     describe: "版本",
