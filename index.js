@@ -24,7 +24,7 @@ let rule = {
     describe: "素材表",
   },
   primogems_expect: {
-      reg: "^#原石(预估|预期)+$",
+      reg: "^#*原石(预估|预期)+$",
       describe: "原石预估"
   },
   versionInfo: {
