@@ -12,6 +12,11 @@ export const rule = {
         reg: "^#*(天赋|武器|周本)+素材+$",  //匹配消息正则，命令正则
         priority: 1, //优先级，越小优先度越高
         describe: "素材表" //【命令】功能说明
+    },
+    primogems_expect: {
+        reg: "^#原石(预估|预期）+$",  //匹配消息正则，命令正则
+        priority: 1, //优先级，越小优先度越高
+        describe: "原石预估" //【命令】功能说明
     }
 };
 
@@ -30,6 +35,23 @@ export function material_chart (e) {
         let msg = [
             segment.image (path),
             '[来源: 原神观测枢]',
+        ];
+        //发送消息
+        e.reply (msg);
+    } else {
+        e.reply ("查询失败~>_<");
+    }
+    return true;//返回true 阻挡消息不再往下
+}
+
+export function primogems_expect (e) {
+    let path = `${_path}/plugins/howe-plugin/resources/materials/原石预估.png`;
+    console.log (path);
+    if (fs.existsSync (path)) {
+        //最后回复消息
+        let msg = [
+            segment.image (path),
+            '[来源: 原神冒险团]',
         ];
         //发送消息
         e.reply (msg);
