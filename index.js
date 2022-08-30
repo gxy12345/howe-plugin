@@ -1,7 +1,7 @@
 import { versionInfo ,refer_Artifacts_Desc} from "./apps/help.js";
 import { version } from "./components/Changelog.js";
 import { refer_Artifacts } from "./apps/refer_Artifacts.js";
-import { material_chart, primogems_expect } from "./apps/materials.js";
+import { material_chart, primogems_expect, pool_interval } from "./apps/materials.js";
 import common from "../../lib/common.js";
 import { updateMiaoPlugin  }from "./apps/admin.js";
 export {
@@ -11,6 +11,7 @@ export {
   refer_Artifacts_Desc,
   material_chart,
   primogems_expect,
+  pool_interval,
 };
 
 
@@ -40,6 +41,10 @@ let rule = {
     reg: "^#?参考面板说明$",
     priority: 100,
     describe: "参考面板说明",
+  },
+  pool_interval: {
+    reg: "^#*未复刻(角色|统计)*$",
+    describe: "角色未复刻间隔"
   }
 
 };

@@ -17,6 +17,11 @@ export const rule = {
         reg: "^#*原石(预估|预期)+$",  //匹配消息正则，命令正则
         priority: 1, //优先级，越小优先度越高
         describe: "原石预估" //【命令】功能说明
+    },
+    pool_interval: {
+        reg: "^#*未复刻(角色|统计)*$",  //匹配消息正则，命令正则
+        priority: 1, //优先级，越小优先度越高
+        describe: "角色未复刻间隔" //【命令】功能说明
     }
 };
 
@@ -60,3 +65,20 @@ export function primogems_expect (e) {
     }
     return true;//返回true 阻挡消息不再往下
 }
+
+export function pool_interval (e) {
+    let path = `${_path}/plugins/howe-plugin/resources/materials/未复刻.png`;
+    console.log (path);
+    if (fs.existsSync (path)) {
+        //最后回复消息
+        let msg = [
+            segment.image (path),
+        ];
+        //发送消息
+        e.reply (msg);
+    } else {
+        e.reply ("查询失败~>_<");
+    }
+    return true;//返回true 阻挡消息不再往下
+}
+
