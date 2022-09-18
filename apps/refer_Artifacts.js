@@ -1,5 +1,6 @@
 import { segment } from "oicq";
 import fs from "fs";
+import { isV3 } from "../components/Changelog.js";
 
 //项目路径
 const _path = process.cwd ();
@@ -18,10 +19,17 @@ export const rule = {
 //2.编写功能方法
 //方法名字与rule中的sample保持一致
 //测试命令 npm test 示例
-export function refer_Artifacts (e) {
+export async function refer_Artifacts (e) {
     let msg = e.msg.replace(/#|＃|参考面板|/g, "");
-    console.log (msg);
-    let id = YunzaiApps.mysInfo.roleIdToName(msg);
+    let Botcfg;
+    let id;
+    if (isV3) {
+        Botcfg = (await import(`file://${_path}/plugins/genshin/model/gsCfg.js`)).default;
+        id = Botcfg.roleNameToID(msg);
+    } else {
+        Botcfg = YunzaiApps.mysInfo
+        id = Botcfg.roleIdToName(msg);
+    }
     let name;
     if (["10000005", "10000007", "20000000"].includes(id)) {
         if (!["风主", "岩主", "雷主"].includes(msg)) {
@@ -30,7 +38,11 @@ export function refer_Artifacts (e) {
         }
         name = msg;
     } else {
-        name = YunzaiApps.mysInfo.roleIdToName(id, true);
+        if (isV3) {
+            name = Botcfg.roleIdToName(id);
+        } else {
+            name = Botcfg.roleIdToName(id, true);
+        }
         if (!name) return true;
     }
     let path = `${_path}/plugins/howe-plugin/resources/refer_Artifacts/${name}.png`;

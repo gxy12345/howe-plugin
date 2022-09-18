@@ -68,5 +68,6 @@ try {
 }
 
 const versionInfo = packageJson.version;
+const isV3 = versionInfo[0] === '3'
 
-export { version, versionInfo, changelogs };
+export { version, versionInfo, changelogs, isV3 };

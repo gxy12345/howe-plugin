@@ -19,12 +19,12 @@ export const rule = {
   }
 };
 
-export function versionInfo(e) {
+export async function versionInfo(e) {
   e.reply(`当前版本：v${version}`);
   return true;
 }
 let path=`${_path}/plugins/howe-plugin/resources/help/refer_Artifacts_help.png`;
-export function refer_Artifacts_Desc(e){
+export async function refer_Artifacts_Desc(e){
   let msg = [
     segment.image (path),]
   e.reply(msg);

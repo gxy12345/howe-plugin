@@ -10,17 +10,17 @@ const _path = process.cwd ();
 export const rule = {
     material_chart: {
         reg: "^#*(天赋|武器|周本)+素材+$",  //匹配消息正则，命令正则
-        priority: 1, //优先级，越小优先度越高
+        priority: 50, //优先级，越小优先度越高
         describe: "素材表" //【命令】功能说明
     },
     primogems_expect: {
         reg: "^#*原石(预估|预期)+$",  //匹配消息正则，命令正则
-        priority: 1, //优先级，越小优先度越高
+        priority: 50, //优先级，越小优先度越高
         describe: "原石预估" //【命令】功能说明
     },
     pool_interval: {
         reg: "^#*未复刻(角色|统计)*$",  //匹配消息正则，命令正则
-        priority: 1, //优先级，越小优先度越高
+        priority: 50, //优先级，越小优先度越高
         describe: "角色未复刻间隔" //【命令】功能说明
     }
 };
@@ -28,7 +28,7 @@ export const rule = {
 //2.编写功能方法
 //方法名字与rule中的sample保持一致
 //测试命令 npm test 示例
-export function material_chart (e) {
+export async function material_chart (e) {
     let msg = e.msg.replace(/#|＃|素材|/g, "");
     console.log (msg);
     let name;
@@ -49,14 +49,13 @@ export function material_chart (e) {
     return true;//返回true 阻挡消息不再往下
 }
 
-export function primogems_expect (e) {
+export async function primogems_expect (e) {
     let path = `${_path}/plugins/howe-plugin/resources/materials/原石预估.png`;
     console.log (path);
     if (fs.existsSync (path)) {
         //最后回复消息
         let msg = [
             segment.image (path),
-            '[来源: 原神冒险团]',
         ];
         //发送消息
         e.reply (msg);
@@ -66,7 +65,7 @@ export function primogems_expect (e) {
     return true;//返回true 阻挡消息不再往下
 }
 
-export function pool_interval (e) {
+export async function pool_interval (e) {
     let path = `${_path}/plugins/howe-plugin/resources/materials/未复刻.png`;
     console.log (path);
     if (fs.existsSync (path)) {
